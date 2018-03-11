@@ -14,3 +14,12 @@ exit
 sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
+
+#docker remote apt の設定
+sudo vi /lib/systemd/system/docker.service
+##以下の行を探して変更
+ExecStart=/usr/bin/docker daemon -H fd:// -H tcp://0.0.0.0:4243
+systemctl daemon-reload
+sudo service docker restart
+curl http://localhost:4243/version
+

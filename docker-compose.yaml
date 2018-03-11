@@ -6,7 +6,7 @@ services:
         ports:
             - "8000:8181"
         volumes:
-            - ./workspace:/workspace 
+            - ../workspace:/workspace 
             - /var/run/docker.sock:/var/run/docker.sock 
         command: --auth username:password
     miniconda:
@@ -17,13 +17,13 @@ services:
         ports:
             - "8100:8888"
         volumes:
-            - ./workspace:/workspace 
+            - ../workspace:/workspace 
         tty: true
-    dockly:
-        image: lirantal/dockly
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-        ports:
-            - "8200:80"
-        tty: true
-    
+#    docker-webui:
+#        image: pottava/docker-webui
+#        volumes:
+#            - /var/run/docker.sock:/var/run/docker.sock
+#        ports:
+#            - "8200:9000"
+#        environment:
+#            - DOCKER_HOST=unix:///var/run/docker.sock
