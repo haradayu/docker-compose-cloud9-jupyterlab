@@ -1,0 +1,22 @@
+version: '2'
+#cloud9
+services:
+    cloud9:
+        build: ./cloud9-alpine
+        ports:
+            - "8000:8181"
+        volumes:
+            - ./workspace:/workspace 
+            - /var/run/docker.sock:/var/run/docker.sock 
+        command: --auth username:password
+    miniconda:
+        build: 
+            context: ./miniconda-debian
+            args:
+                pass: "password"
+        ports:
+            - "8100:8888"
+        volumes:
+            - ./workspace:/workspace 
+        tty: true
+    
