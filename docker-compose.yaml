@@ -19,4 +19,11 @@ services:
         volumes:
             - ./workspace:/workspace 
         tty: true
+    dockly:
+        image: lirantal/dockly
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - "8200:80"
+        tty: true
     
